@@ -7,12 +7,25 @@ body {
 
 .header1 {
     background-color: black;
-    height: 38vh;
+    height: 20vh;
     width: 100vw;
     /* position: absolute; */
-    top: 0;
+    /* top: 0; */
 
 }
+
+.headerImage {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 84%;
+    width: auto;
+}
+
+main {
+    height: 80vh;
+}
+
 .playerBox1 {
     width: 15vw;
     background-color: darkslategray;
@@ -88,10 +101,14 @@ img {
     width: 60%;
 }
 
+.gameArea {
+    display: inline-block;
+}
+
 .gameBoard {
     width: 50vw;
     height: 50vw;
-    position: relative;
+    /* position: relative; */
     left: 25vw;
     margin: 0;
     bottom: 5vw;
