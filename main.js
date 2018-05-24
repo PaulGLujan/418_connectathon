@@ -4,13 +4,15 @@ function initializeGame(){
     attachClickHandlers();
 };
 function attachClickHandlers(){
-    $(".resetButton").on("click", resetGame);
-    $(".gameColumn").on("click", dropPiece);
+    $(".forfeitButton").on("click", resetGame);
+    $(".column").on("click", piecePlacement);
     $(".          ").on("click",         );
 };
 
+
 // GLOBAL VARIABLES
 var playerTurn = null;
+var column_clicked = null;
 // ----------------
 function changeTurn(){
     if (playerTurn === 1){
@@ -24,10 +26,32 @@ function changeTurn(){
 var piecesInColumn = 7;
 var rowPiecePlace = 0;
 // ----------------
-function getRowForPiece(piecesInColumn){
-        rowPiecePlace = piecesInColumn -1;
-    return rowPiecePlace;
+
+
+function piecePlacement(){
+    columnIndex();
+    countNumInCol();
+    rowForPiece();
+}
+function columnIndex(){
+    column_clicked =($(this).index())
+ }
+function countNumInCol() {
+    for (i = 0; i < 7; i++) {
+        if (!isNaN(gameArray[i])) {
+            piecesInColumn = piecesInColumn + 1
+        } else if (i=7) {
+            return undefined;
+        }
+    }
+}
+function rowForPiece(piecesInColumn){
+        putPieceInRow = piecesInColumn -1;
+    return putPieceInRow;
 };
+
+
+
 
 // 2x2 SQUARE BONUS
 function squareBonusCheck(boardArrayClick){
@@ -282,15 +306,10 @@ function reset_stats() {
     attempts = 0;
 }
 
-//this is the reset button function
-function resetButton() {
-    $("#resetbutton").on("click", resetGame());
-
 
 //count the number of pieces in column, we will start at 0,0 and go down the column to see how many pieces are present
 function getNewTokenRow( column, array ) {
     var newTokenRow = array.length - 1;
-    // debugger
     while ( array[newTokenRow][column].token !== null ) {
         newTokenRow -= 1; 
         if ( newTokenRow < 0 ){
@@ -315,10 +334,5 @@ function hideWinModal() {
 }
 function hidDrawModal () {
     $(".drawModal").hide()
-}
-
-$(".gameArea").on("click", ".column", columnIndex();
-function columnIndex(){
-    var column_clicked =($(this).index())
 }
 
