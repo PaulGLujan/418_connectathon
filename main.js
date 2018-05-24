@@ -2,18 +2,26 @@ $(document).ready(initializeGame);
 
 function initializeGame(){
     attachClickHandlers();
+    $(".player1").find(".token1").hide();
 };
 function attachClickHandlers(){
     $(".forfeitButton").on("click", resetGame);
     $(".column").on("click", piecePlacement);
-    $(".          ").on("click",         );
+ //   $(".          ").on("click",         );
 };
 
 
 // GLOBAL VARIABLES
 var playerTurn = null;
 var column_clicked = null;
+var piecesInColumn = 7;
+var rowPiecePlace = 0;
 // ----------------
+
+function displayToken() {
+    $(".player1").find(".token1").show();
+ //   $(".player2").find(".token2").show();
+ }
 function changeTurn(){
     if (playerTurn === 1){
         playerTurn = 2;
@@ -22,16 +30,12 @@ function changeTurn(){
     };
 };
 
-// GLOBAL VARIABLES
-var piecesInColumn = 7;
-var rowPiecePlace = 0;
-// ----------------
-
-
 function piecePlacement(){
     columnIndex();
     countNumInCol();
     rowForPiece();
+    displayToken();
+    console.log('Piece placement function working');
 }
 function columnIndex(){
     column_clicked =($(this).index())
@@ -271,6 +275,7 @@ function resetGame() {
     ];
     reset_stats();
     display_stats();
+    console.log('Reset game function working.');
 }
 //
 
