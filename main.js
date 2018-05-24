@@ -31,14 +31,19 @@ function changeTurn(){
 };
 
 function piecePlacement(){
-    columnIndex();
+    var jQueryObj= $(this)
+    columnIndex(jQueryObj);
     countNumInCol();
     rowForPiece();
     displayToken();
     console.log('Piece placement function working');
+    console.log('This is: ', this);
 }
-function columnIndex(){
-    column_clicked =($(this).index())
+function columnIndex(jQueryObj){
+        
+    column_clicked = jQueryObj.attr("id");
+
+    console.log('The column clicked was: ', column_clicked);
  }
 function countNumInCol() {
     for (i = 0; i < 7; i++) {
