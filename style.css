@@ -24,6 +24,20 @@ body {
 
 main {
     height: 80vh;
+    font-size: 0;
+}
+
+.playerBoxBorder{
+    height: 100%;
+    width: 25%;
+    display: inline-block;
+}
+
+.playerBox {
+    position: relative;
+    top: 7%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .playerBox1 {
@@ -35,8 +49,9 @@ main {
     height: 60vh;
     text-align: center;
     /* margin-left: 25px; */
-    top: 5vh;
+    /* top: 5vh; */
     display: inline-block;
+    vertical-align: top;
 }
 
 .statsBox {
@@ -65,8 +80,8 @@ main {
     /* position: relative; */
     height: 60vh;
     text-align: center;
-    left: 82vw;
-    bottom: 60vw;
+    /* left: 82vw; */
+    /* bottom: 60vw; */
     display: inline-block;
     vertical-align: top;
 
@@ -108,35 +123,40 @@ img {
 }
 
 .gameBoard {
-    width: 50vw;
-    height: 50vw;
-    /* position: relative; */
-    left: 25vw;
+    width: 50vmin;
+    height: 50vmin;
+    position: relative;
+    /* left: 25vw; */
     margin: 0;
-    bottom: 5vw;
+    /* bottom: 5vw; */
     display: inline-block;
     vertical-align: top;
+    top: 14%;
 }
 .row0, .row1, .row2, .row3, .row4, .row5, .row6 {
-    position: relative;
+    /* position: relative; */
     display: inline-block;
     background-color: darkred;
-    height: 12%;
+    height: 14.2857143%;
     width: 100%;
 }
 .space {
-    position: relative;
+    /* position: relative; */
     display: inline-block;
     height: 100%;
-    width: 13%;
+    width: 14.2857143%;
 }
-.column0, .column1, .column2, .column3, .column4, .column5, .column6 {
+/* .column0, .column1, .column2, .column3, .column4, .column5, .column6 */
+.column {
     position: relative;
     display: inline-block;
     height: 90%;
     width: 90%;
     border: 1px solid white;
     background-color: #6a6969;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
 
 }
 
