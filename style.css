@@ -9,7 +9,7 @@ body {
     background-color: black;
     height: 38vh;
     width: 100vw;
-    position: absolute;
+    /* position: absolute; */
     top: 0;
 
 }
@@ -21,8 +21,9 @@ body {
     position: relative;
     height: 60vh;
     text-align: center;
-    margin-left: 25px;
-    top: 40vh;
+    /* margin-left: 25px; */
+    top: 5vh;
+    display: inline-block;
 }
 
 .statsBox {
@@ -117,6 +118,11 @@ img {
     background-color: #6a6969;
 
 }
+
+.modal {
+    display: none;
+}
+
 /*
 .modal {
     display: none;
