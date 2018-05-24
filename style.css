@@ -7,22 +7,36 @@ body {
 
 .header1 {
     background-color: black;
-    height: 38vh;
+    height: 20vh;
     width: 100vw;
-    position: absolute;
-    top: 0;
+    /* position: absolute; */
+    /* top: 0; */
 
 }
+
+.headerImage {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 84%;
+    width: auto;
+}
+
+main {
+    height: 80vh;
+}
+
 .playerBox1 {
     width: 15vw;
     background-color: darkslategray;
     border-radius: 8px;
     border: 1px solid red;
-    position: relative;
+    /* position: relative; */
     height: 60vh;
     text-align: center;
-    margin-left: 25px;
-    top: 40vh;
+    /* margin-left: 25px; */
+    top: 5vh;
+    display: inline-block;
 }
 
 .statsBox {
@@ -48,11 +62,13 @@ body {
     background-color: darkslategray;
     border-radius: 8px;
     border: 1px solid red;
-    position: relative;
+    /* position: relative; */
     height: 60vh;
     text-align: center;
     left: 82vw;
     bottom: 60vw;
+    display: inline-block;
+    vertical-align: top;
 
 }
 .pieceDisplay1 {
@@ -87,13 +103,19 @@ img {
     width: 60%;
 }
 
+.gameArea {
+    /* display: inline-block; */
+}
+
 .gameBoard {
     width: 50vw;
     height: 50vw;
-    position: relative;
+    /* position: relative; */
     left: 25vw;
     margin: 0;
     bottom: 5vw;
+    display: inline-block;
+    vertical-align: top;
 }
 .row0, .row1, .row2, .row3, .row4, .row5, .row6 {
     position: relative;
@@ -117,6 +139,11 @@ img {
     background-color: #6a6969;
 
 }
+
+.modal {
+    display: none;
+}
+
 .token1 {
     background: url("SMgamepiecesmall.png");
     position: relative;
