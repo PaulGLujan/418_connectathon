@@ -287,4 +287,8 @@ function hidDrawModal () {
     $(".drawModal").hide()
 }
 
+$(".gameArea").on("click", ".column", columnIndex();
+function columnIndex(){
+    var column_clicked =($(this).index())
+}
 
