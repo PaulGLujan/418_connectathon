@@ -25,6 +25,24 @@ body {
     top: 40vh;
 }
 
+.statsBox {
+    position: relative;
+    top: 13%;
+    height: 60%;
+    color: #331c14;
+    /* background-color: lime; */
+}
+
+#player1 {
+    width: 6em;
+    height: 2em;
+}
+
+.forfeitButton {
+    position: relative;
+    top: 13%;
+}
+
 .playerBox2 {
     width: 15vw;
     background-color: darkslategray;
@@ -40,7 +58,7 @@ body {
 .pieceDisplay1 {
 
     background-color: darkslategray;
-    height: 20vh;
+    /* height: 20vh; */
     width: 10vw;
     position: relative;
     top: 4vh;
