@@ -24,6 +24,20 @@ body {
 
 main {
     height: 80vh;
+    font-size: 0;
+}
+
+.playerBoxBorder{
+    height: 100%;
+    width: 25%;
+    display: inline-block;
+}
+
+.playerBox {
+    position: relative;
+    top: 7%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .playerBox1 {
@@ -35,8 +49,9 @@ main {
     height: 60vh;
     text-align: center;
     /* margin-left: 25px; */
-    top: 5vh;
+    /* top: 5vh; */
     display: inline-block;
+    vertical-align: top;
 }
 
 .statsBox {
@@ -65,8 +80,8 @@ main {
     /* position: relative; */
     height: 60vh;
     text-align: center;
-    left: 82vw;
-    bottom: 60vw;
+    /* left: 82vw; */
+    /* bottom: 60vw; */
     display: inline-block;
     vertical-align: top;
 
