@@ -125,12 +125,13 @@ img {
 .gameBoard {
     width: 50vmin;
     height: 50vmin;
-    /* position: relative; */
+    position: relative;
     /* left: 25vw; */
     margin: 0;
     /* bottom: 5vw; */
     display: inline-block;
     vertical-align: top;
+    top: 14%;
 }
 .row0, .row1, .row2, .row3, .row4, .row5, .row6 {
     /* position: relative; */
