@@ -260,17 +260,19 @@ function resetButton() {
 
 
 //count the number of pieces in column, we will start at 0,0 and go down the column to see how many pieces are present
-    function countNumInCol() {
-
-        for (i = 0; i < 7; i++) {
-            if (!isNaN(gameArray[i])) {
-                piecesInColumn = piecesInColumn - 1
-            } else if (i=7) {
-                //do nothing
-            }
+function getNewTokenRow( column, array ) {
+    var newTokenRow = array.length - 1;
+    // debugger
+    while ( array[newTokenRow][column].token !== null ) {
+        newTokenRow -= 1; 
+        if ( newTokenRow < 0 ){
+            console.log('The column is full.')
+            return 
         }
     }
+    return newTokenRow
 }
+
 
 //Functions for win and draw modals
 
