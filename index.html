@@ -11,39 +11,31 @@
 </head>
 <body>
 
-<div class="header1">
-    <header>
-    <img src="DPsprawl.png">
-    </header>
-</div>
-
-<div>
-    <div class="playerBox1">
-        <div class="pieceDisplay1">
-            <img id="dpGamePiece" src="DPgamepiece.png">
-        </div>
-        <div class="player1Name"></div>
-        <div class="statsBox">
-            <div class="statsDisplay">
-                <h3>Stats</h3>
-                <h5>Games Played</h5>
-                <h5>Attempts</h5>
+<header class="header1">
+    <img class="headerImage" src="DPsprawl.png">
+</header>
+<main>
+    <div class="playerBoxBorder">
+        <div class="playerBox1 playerBox">
+            <div class="pieceDisplay1">
+                <img id="dpGamePiece" src="DPgamepiece.png">
             </div>
-            <div class="forfeitButton">
-                <button id="player1">
-                    Forfeit
-                </button>
+            <div class="player1Name"></div>
+            <div class="statsBox">
+                <div class="statsDisplay">
+                    <h3>Stats</h3>
+                    <h5>Games Played</h5>
+                    <h5>Attempts</h5>
+                </div>
+                <div class="forfeitButton">
+                    <button id="player1">
+                        Forfeit
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="header">
-    <div class="gameTitle"> </div>
-    <div class="playerTurn"></div>
-</div>
-
-<div class="gameArea">
     <div class="gameBoard">
 
         <div id="01" class="row0">
@@ -226,23 +218,24 @@
                 <div id="6" class="column6 column"></div>
             </div>
 
-    </div>
-</div>
-
-<div>
-    <div class="playerBox2">
-        <div class="pieceDisplay2">
-            <img id="dpgamepiece" src="SMgamepiece.png">
         </div>
-        <div class="player2Name"></div>
-        <div class="statsBox">
-            <div class="statsDisplay"></div>
-            <div class="forfeitButton player2">
-                Forfeit
+    </div>
+
+    <div class="playerBoxBorder">
+        <div class="playerBox2 playerBox">
+            <div class="pieceDisplay2">
+                <img id="dpgamepiece" src="SMgamepiece.png">
+            </div>
+            <div class="player2Name"></div>
+            <div class="statsBox">
+                <div class="statsDisplay"></div>
+                <div class="forfeitButton player2">
+                    Forfeit
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
 
 <div id="Modal" class="modal">
     <div class="modal-content">
@@ -250,6 +243,6 @@
             <p></p>
             <img src="">
     </div>
-
+</div>
 </body>
 </html>
