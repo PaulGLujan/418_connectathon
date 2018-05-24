@@ -31,7 +31,7 @@ main {
     background-color: darkslategray;
     border-radius: 8px;
     border: 1px solid red;
-    position: relative;
+    /* position: relative; */
     height: 60vh;
     text-align: center;
     /* margin-left: 25px; */
@@ -62,11 +62,13 @@ main {
     background-color: darkslategray;
     border-radius: 8px;
     border: 1px solid red;
-    position: relative;
+    /* position: relative; */
     height: 60vh;
     text-align: center;
     left: 82vw;
     bottom: 60vw;
+    display: inline-block;
+    vertical-align: top;
 
 }
 .pieceDisplay1 {
@@ -102,7 +104,7 @@ img {
 }
 
 .gameArea {
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .gameBoard {
@@ -112,6 +114,8 @@ img {
     left: 25vw;
     margin: 0;
     bottom: 5vw;
+    display: inline-block;
+    vertical-align: top;
 }
 .row0, .row1, .row2, .row3, .row4, .row5, .row6 {
     position: relative;
