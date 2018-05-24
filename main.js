@@ -2,16 +2,26 @@ $(document).ready(initializeGame);
 
 function initializeGame(){
     attachClickHandlers();
+    $(".player1").find(".token1").hide();
 };
 function attachClickHandlers(){
-    $(".resetButton").on("click", resetGame);
-    $(".gameColumn").on("click", dropPiece);
-    $(".          ").on("click",         );
+    $(".forfeitButton").on("click", resetGame);
+    $(".column").on("click", piecePlacement);
+ //   $(".          ").on("click",         );
 };
+
 
 // GLOBAL VARIABLES
 var playerTurn = null;
+var column_clicked = null;
+var piecesInColumn = 7;
+var rowPiecePlace = 0;
 // ----------------
+
+function displayToken() {
+    $(".player1").find(".token1").show();
+ //   $(".player2").find(".token2").show();
+ }
 function changeTurn(){
     if (playerTurn === 1){
         playerTurn = 2;
@@ -20,14 +30,37 @@ function changeTurn(){
     };
 };
 
-// GLOBAL VARIABLES
-var piecesInColumn = 7;
-var rowPiecePlace = 0;
-// ----------------
-function getRowForPiece(piecesInColumn){
-        rowPiecePlace = piecesInColumn -1;
-    return rowPiecePlace;
+function piecePlacement(){
+    var jQueryObj= $(this)
+    columnIndex(jQueryObj);
+    countNumInCol();
+    rowForPiece();
+    displayToken();
+    console.log('Piece placement function working');
+    console.log('This is: ', this);
+}
+function columnIndex(jQueryObj){
+        
+    column_clicked = jQueryObj.attr("id");
+
+    console.log('The column clicked was: ', column_clicked);
+ }
+function countNumInCol() {
+    for (i = 0; i < 7; i++) {
+        if (!isNaN(gameArray[i])) {
+            piecesInColumn = piecesInColumn + 1
+        } else if (i=7) {
+            return undefined;
+        }
+    }
+}
+function rowForPiece(piecesInColumn){
+        putPieceInRow = piecesInColumn -1;
+    return putPieceInRow;
 };
+
+
+
 
 // 2x2 SQUARE BONUS
 function squareBonusCheck(boardArrayClick){
@@ -247,6 +280,7 @@ function resetGame() {
     ];
     reset_stats();
     display_stats();
+    console.log('Reset game function working.');
 }
 //
 
@@ -282,15 +316,10 @@ function reset_stats() {
     attempts = 0;
 }
 
-//this is the reset button function
-function resetButton() {
-    $("#resetbutton").on("click", resetGame());
-
 
 //count the number of pieces in column, we will start at 0,0 and go down the column to see how many pieces are present
 function getNewTokenRow( column, array ) {
     var newTokenRow = array.length - 1;
-    // debugger
     while ( array[newTokenRow][column].token !== null ) {
         newTokenRow -= 1; 
         if ( newTokenRow < 0 ){
@@ -315,10 +344,5 @@ function hideWinModal() {
 }
 function hidDrawModal () {
     $(".drawModal").hide()
-}
-
-$(".gameArea").on("click", ".column", columnIndex();
-function columnIndex(){
-    var column_clicked =($(this).index())
 }
 
