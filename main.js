@@ -54,10 +54,10 @@ function placePlayerToken(piecesInRow) {
 
 function displayToken(piecesInRow, column_clicked) {
     if (gameArray[piecesInRow][column_clicked].token === 1) {
-        $(".row" + piecesInRow + " .column" + column_clicked).addClass(".showPlayer1")
+        $(".row" + piecesInRow + " .column" + column_clicked).addClass("showPlayer1")
 
     } else if (gameArray[piecesInRow][column_clicked].token === 2) {
-        $(".row" + piecesInRow + " .column" + column_clicked).addClass(".showPlayer2")
+        $(".row" + piecesInRow + " .column" + column_clicked).addClass("showPlayer2")
     }
 }
 
