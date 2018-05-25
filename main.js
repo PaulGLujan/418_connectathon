@@ -3,7 +3,6 @@ $(document).ready(initializeGame);
 function initializeGame(){
     attachClickHandlers();
     currentPlayer = player[0];
-    $(".player1").find(".token1").hide();
 };
 function attachClickHandlers(){
     $(".forfeitButton").on("click", resetGame);
