@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Deadpool Connect 4</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+
+<header class="header1">
+    <img class="headerImage" src="DPsprawl.png">
+</header>
+<main>
+    <div class="playerBoxBorder">
+        <div class="playerBox1 playerBox">
+            <div class="pieceDisplay1">
+                <img id="dpGamePiece" src="DPgamepiece.png">
+            </div>
+            <div class="player1Name"></div>
+            <div class="statsBox">
+                <div class="statsDisplay">
+                    <h3>Stats</h3>
+                    <h5>Games Played</h5>
+                    <h5>Attempts</h5>
+                </div>
+                <div class="forfeitButton">
+                    <button id="player1">
+                        Forfeit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gameBoard">
+
+        <div id="01" class="row0">
+
+            <div class="space">
+                <div id="0" class="column0 column"></div>
+            </div>
+            <div class="space">
+                <div id="1" class="column1 column"></div>
+            </div>
+            <div class="space">
+                <div id="2" class="column2 column"></div>
+            </div>
+            <div class="space">
+                <div id="3" class="column3 column"></div>
+            </div>
+            <div class="space">
+                <div id="4" class="column4 column"></div>
+            </div>
+            <div class="space">
+                <div id="5" class="column5 column"></div>
+            </div>
+            <div class="space">
+                <div id="6" class="column6 column"></div>
+            </div>
+
+        </div>
+
+        <div id="1" class="row1">
+
+            <div class="space">
+                <div id="0" class="column0 column"></div>
+            </div>
+            <div class="space">
+                <div id="1" class="column1 column"></div>
+            </div>
+            <div class="space">
+                <div id="2" class="column2 column"></div>
+            </div>
+            <div class="space">
+                <div id="3" class="column3 column"></div>
+            </div>
+            <div class="space">
+                <div id="4" class="column4 column"></div>
+            </div>
+            <div class="space">
+                <div id="5" class="column5 column"></div>
+            </div>
+            <div class="space">
+                <div id="6" class="column6 column"></div>
+            </div>
+    
+        </div>
+
+        <div id="2" class="row2">
+
+            <div class="space">
+                <div id="0" class="column0 column"></div>
+            </div>
+            <div class="space">
+                <div id="1" class="column1 column"></div>
+            </div>
+            <div class="space">
+                <div id="2" class="column2 column"></div>
+            </div>
+            <div class="space">
+                <div id="3" class="column3 column"></div>
+            </div>
+            <div class="space">
+                <div id="4" class="column4 column"></div>
+            </div>
+            <div class="space">
+                <div id="5" class="column5 column"></div>
+            </div>
+            <div class="space">
+                <div id="6" class="column6 column"></div>
+            </div>
+
+        </div>
+
+        <div id="3" class="row3">
+
+            <div class="space">
+                <div id="0" class="column0 column"></div>
+            </div>
+            <div class="space">
+                <div id="1" class="column1 column"></div>
+            </div>
+            <div class="space">
+                <div id="2" class="column2 column"></div>
+            </div>
+            <div class="space">
+                <div id="3" class="column3 column"></div>
+            </div>
+            <div class="space">
+                <div id="4" class="column4 column"></div>
+            </div>
+            <div class="space">
+                <div id="5" class="column5 column"></div>
+            </div>
+            <div class="space">
+                <div id="6" class="column6 column"></div>
+            </div>
+
+        </div>
+
+        <div id="4" class="row4">
+
+            <div class="space">
+                <div id="0" class="column0 column"></div>
+            </div>
+            <div class="space">
+                <div id="1" class="column1 column"></div>
+            </div>
+            <div class="space">
+                <div id="2" class="column2 column"></div>
+            </div>
+            <div class="space">
+                <div id="3" class="column3 column"></div>
+            </div>
+            <div class="space">
+                <div id="4" class="column4 column"></div>
+            </div>
+            <div class="space">
+                <div id="5" class="column5 column"></div>
+            </div>
+            <div class="space">
+                <div id="6" class="column6 column"></div>
+            </div>
+
+        </div>
+
+        <div id="5" class="row5">
+
+            <div class="space">
+                <div id="0" class="column0 column"></div>
+            </div>
+            <div class="space">
+                <div id="1" class="column1 column"></div>
+            </div>
+            <div class="space">
+                <div id="2" class="column2 column"></div>
+            </div>
+            <div class="space">
+                <div id="3" class="column3 column"></div>
+            </div>
+            <div class="space">
+                <div id="4" class="column4 column"></div>
+            </div>
+            <div class="space">
+                <div id="5" class="column5 column"></div>
+            </div>
+            <div class="space">
+                <div id="6" class="column6 column"></div>
+            </div>
+
+        </div>
+
+        <div id="6" class="row6">
+
+            <div class="space">
+                <div id="0" class="column0 column"></div>
+            </div>
+            <div class="space">
+                <div id="1" class="column1 column"></div>
+            </div>
+            <div class="space">
+                <div id="2" class="column2 column"></div>
+            </div>
+            <div class="space">
+                <div id="3" class="column3 column"></div>
+            </div>
+            <div class="space">
+                <div id="4" class="column4 column"></div>
+            </div>
+            <div class="space">
+                <div id="5" class="column5 column"></div>
+            </div>
+            <div class="space">
+                <div id="6" class="column6 column"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="playerBoxBorder">
+        <div class="playerBox2 playerBox">
+            <div class="pieceDisplay2">
+                <img id="dpgamepiece" src="SMgamepiece.png">
+            </div>
+            <div class="player2Name"></div>
+            <div class="statsBox">
+                <div class="statsDisplay"></div>
+                <div class="forfeitButton player2">
+                    Forfeit
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div id="Modal" class="modal">
+    <div class="modal-content">
+            <span class="close" onclick="hideModal()">&times;</span>
+            <p></p>
+            <img src="">
+    </div>
+</div>
+</body>
+</html>
