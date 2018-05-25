@@ -74,7 +74,9 @@ function displayToken(piecesInRow, column_clicked) {
         columnIndex(jQueryObj);
         var rowPieceShouldBePlaced = rowIndex();
         placePlayerToken(rowToPlacePiece);
-        displayToken(rowPieceShouldBePlaced, column_clicked);
+        displayToken(rowPieceShouldBePlaced, column_clicked);   
+        var playerNumber = returnPlayerNumber(currentPlayer);
+        winCondition(rowToPlacePiece, column_clicked, gameArray, playerNumber);
         changeTurn();
         console.log('Piece placement function working');
         console.log('This is: ', this);
@@ -140,6 +142,11 @@ function displayToken(piecesInRow, column_clicked) {
     };
 
     function winCondition(row, column, array, player) {
+        // console.log('chickens');
+        // console.log('row', row);
+        // console.log('column', column)
+        // console.log('array', array)
+        // console.log('player:', player);
         if (array[row][column].token !== player) {
             return false
         }
@@ -178,6 +185,7 @@ function displayToken(piecesInRow, column_clicked) {
                 check_column = column + column_direction;
             }
             if (inline_counter >= 4) {
+                console.log('winner winner chicken dinner for ' + player)
                 return true
             }
         }
@@ -406,4 +414,14 @@ function displayToken(piecesInRow, column_clicked) {
         $(".drawModal").hide()
     }
 
-
+function returnPlayerNumber (currentPlayer) {
+    var player = currentPlayer.name;
+    var playerNumber = 0;
+    if( player === 'player1' ){
+        playerNumber = 1;
+    }
+    else if( player === 'player2' ){
+        playerNumber = 2;
+    }
+    return playerNumber
+}
