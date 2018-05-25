@@ -147,6 +147,8 @@ function displayToken(piecesInRow, column_clicked) {
         // console.log('column', column)
         // console.log('array', array)
         // console.log('player:', player);
+        row = Number(row);
+        column = Number(column);
         if (array[row][column].token !== player) {
             return false
         }
