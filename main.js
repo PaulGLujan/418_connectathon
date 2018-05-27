@@ -4,7 +4,9 @@ function initializeGame(){
     attachClickHandlers();
     currentPlayer = player[0];
     $(".player1").find(".token1").hide();
+
 };
+
 function attachClickHandlers(){
     $(".forfeitButton").on("click", resetGame);
     $(".column").on("click", piecePlacement);
@@ -188,7 +190,8 @@ function displayToken(piecesInRow, column_clicked) {
                 check_column = column + column_direction;
             }
             if (inline_counter >= 4) {
-                console.log('winner winner chicken dinner for ' + player)
+                win();
+                console.log('winner winner chicken dinner for ' + player);
                 return true
             }
         }
@@ -401,10 +404,6 @@ function displayToken(piecesInRow, column_clicked) {
 
 //Functions for win and draw modals
 
-    function winModal() {
-        $(".winModal").show()
-    }
-
     function drawModal() {
         $(".drawModal").show()
     }
@@ -427,4 +426,43 @@ function returnPlayerNumber (currentPlayer) {
         playerNumber = 2;
     }
     return playerNumber
+}
+// Get the startMenu modal
+var modal = document.getElementById('startModal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+//Clear start menu input field upon click so user can enter name:
+
+$('#player1_input').focus(function() {
+    $(this).val('');
+});
+$('#player2_input').focus(function() {
+    $(this).val('');
+});
+
+function clickButton() {
+    $("#playButton").click(getInput)
+}
+function getInput() {
+    var userInput = $("#player1_input").val();
+    var userInput = $("#player2_input").val();
+    console.log("This is the user input: ", userInput);
+}
+
+function win() {
+    document.getElementById('winModal').style.display='block'
+}
+// Get the modal
+var winmodal = document.getElementById('winModal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == winmodal) {
+        modal.style.display = "none";
+    }
 }
