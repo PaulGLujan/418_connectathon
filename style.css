@@ -89,6 +89,7 @@ main {
     position: relative;
     bottom: 16vw;
     width: 15vw;
+    left: 5vw;
     background-color: darkslategray;
     border-radius: 8px;
     border: 1px solid red;
