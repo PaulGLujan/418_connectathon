@@ -4,13 +4,16 @@ function initializeGame(){
     attachClickHandlers();
     
     $(".player1").find(".token1").hide();
+    startMenu();
 
 };
 
 function attachClickHandlers(){
     $(".forfeitButton").on("click", resetGame);
     $(".column").on("click", piecePlacement);
-    
+    $("#playButton").on("click", getInput);
+
+
 };
 
 
@@ -84,7 +87,7 @@ function displayToken(piecesInRow, column_clicked) {
         placePlayerToken(rowToPlacePiece, currentPlayer);
         displayToken(rowPieceShouldBePlaced, column_clicked);   
         var playerNumber = returnPlayerNumber(currentPlayer);
-        winCondition(rowToPlacePiece, column_clicked, gameArray, playerNumber);
+        winCondition(rowToPlacePiece, column_clicked, gameArray, currentPlayer);
         changeTurn();
         console.log('Piece placement function working');
         console.log('This is: ', this);
@@ -177,7 +180,7 @@ function displayToken(piecesInRow, column_clicked) {
         // console.log('player:', player);
         row = Number(row);
         column = Number(column);
-        if (array[row][column].token !== player) {
+        if (array[row][column].token !== player.tokenNumber) {
             return false
         }
         var row_direction_array = [0, -1, -1, -1];
@@ -197,7 +200,7 @@ function displayToken(piecesInRow, column_clicked) {
                 else if (array[check_row][check_column] === undefined) {
                 }
                 else {
-                    while (array[check_row][check_column].token === player) {
+                    while (array[check_row][check_column].token === player.tokenNumber) {
                         inline_counter += 1;
                         check_row += row_direction;
                         check_column += column_direction;
@@ -216,7 +219,7 @@ function displayToken(piecesInRow, column_clicked) {
             }
             if (inline_counter >= 4) {
                 win();
-                console.log('winner winner chicken dinner for ' + player);
+                console.log('winner winner chicken dinner for ' + player.name);
                 return true
             }
         }
@@ -452,8 +455,10 @@ function returnPlayerNumber (currentPlayer) {
     }
     return playerNumber
 }
-// Get the startMenu modal
-var modal = document.getElementById('startModal');
+function startMenu(){
+        document.getElementById('startModal').style.display='block'
+}
+        var modal = document.getElementById('startModal');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -470,13 +475,11 @@ $('#player2_input').focus(function() {
     $(this).val('');
 });
 
-function clickButton() {
-    $("#playButton").click(getInput)
-}
+
 function getInput() {
-    var userInput = $("#player1_input").val();
-    var userInput = $("#player2_input").val();
-    console.log("This is the user input: ", userInput);
+    player[0].name = $("#player1_input").val();
+    player[1].name = $("#player2_input").val();
+    console.log("This is the user input: ", player[0].name, player[1].name);
 }
 
 function win() {
