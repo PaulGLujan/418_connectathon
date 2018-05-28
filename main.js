@@ -2,12 +2,15 @@ $(document).ready(initializeGame);
 
 function initializeGame(){
     attachClickHandlers();
-    currentPlayer = player[0];
+    
+    $(".player1").find(".token1").hide();
+
 };
+
 function attachClickHandlers(){
     $(".forfeitButton").on("click", resetGame);
     $(".column").on("click", piecePlacement);
-
+    
 };
 
 
@@ -26,26 +29,32 @@ var piecesInColumn = 0;
 var player = [];
 player[0] = {
     name: "player1",
+    tokenNumber: 1,
     points: 0,
+    squareBonus: 0,
     gamesWon: 0,
     gamesLost: 0,
     gamesTied: 0,
 };
 player[1] = {
     name: "player2",
+    tokenNumber: 2,
     points: 0,
+    squareBonus: 0,
     gamesWon: 0,
     gamesLost: 0,
     gamesTied: 0,
 };
 
+var currentPlayer = player[0];
 
-function placePlayerToken(piecesInRow) {
+function placePlayerToken(piecesInRow, currentPlayer) {
     if (currentPlayer === player[0]) {
         gameArray[piecesInRow][column_clicked].token = 1;
     } else if (currentPlayer === player[1]) {
         gameArray[piecesInRow][column_clicked].token = 2;
     }
+    squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked);
 }
 
 
@@ -65,15 +74,14 @@ function displayToken(piecesInRow, column_clicked) {
             currentPlayer = player[1];
         } else if (currentPlayer === player[1]) {
             currentPlayer = player[0];
-        }
-        ;
+        };
     };
 
     function piecePlacement() {
         var jQueryObj = $(this);
         columnIndex(jQueryObj);
         var rowPieceShouldBePlaced = rowIndex();
-        placePlayerToken(rowToPlacePiece);
+        placePlayerToken(rowToPlacePiece, currentPlayer);
         displayToken(rowPieceShouldBePlaced, column_clicked);   
         var playerNumber = returnPlayerNumber(currentPlayer);
         winCondition(rowToPlacePiece, column_clicked, gameArray, playerNumber);
@@ -84,7 +92,7 @@ function displayToken(piecesInRow, column_clicked) {
 
     function columnIndex(jQueryObj) {
 
-        column_clicked = jQueryObj.attr("id");
+        column_clicked = parseInt(jQueryObj.attr("id"));
 
         console.log('The column clicked was: ', column_clicked);
     }
@@ -106,40 +114,60 @@ function displayToken(piecesInRow, column_clicked) {
 
 
 // 2x2 SQUARE BONUS
-    function squareBonusCheck(boardArrayClick) {
-        if (boardArray[row - 1][column + 1] === 'X') {
-            if (boardArray[row - 0][column + 1] === 'X' && boardArray[row - 1][column - 0] === 'X') {
-                console.log('SQUAREBONUS top right');
-                return;
-            }
-            ;
-        }
-        ;
-        if (boardArray[row - 1][column - 1] === 'X') {
-            if (boardArray[row - 0][column - 1] === 'X' && boardArray[row - 1][column - 0] === 'X') {
-                console.log('SQUAREBONUS top left');
-                return;
-            }
-            ;
-        }
-        ;
-        if (boardArray[row + 1][column - 1] === 'X') {
-            if (boardArray[row - 0][column - 1] === 'X' && boardArray[row + 1][column - 0] === 'X') {
-                console.log('SQUAREBONUS bottom left');
-                return;
-            }
-            ;
-        }
-        ;
-        if (boardArray[row + 1][column + 1] === 'X') {
-            if (boardArray[row - 0][column + 1] === 'X' && boardArray[row + 1][column - 0] === 'X') {
-                console.log('SQUAREBONUS bottom right');
-                return;
-            }
-            ;
-        }
-        ;
+    function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked) {
+        if (piecesInRow <=6 && column_clicked <=5){
+            if(piecesInRow >=1 && column_clicked >=0){
+                if (gameArray[piecesInRow - 1][column_clicked + 1].token === currentPlayer.tokenNumber) {
+                    if (gameArray[piecesInRow - 0][column_clicked + 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow - 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
+                        currentPlayer.squareBonus += 1;
+                        console.log('SQUAREBONUS top right');
+                        return;
+                    };
+                };
+            };
+        };
+        if (piecesInRow <=6 && column_clicked <=6){
+            if (piecesInRow >=1 && column_clicked >=1){
+                if (gameArray[piecesInRow - 1][column_clicked - 1].token === currentPlayer.tokenNumber) {
+                    if (gameArray[piecesInRow - 0][column_clicked - 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow - 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
+                        currentPlayer.squareBonus += 1;
+                        console.log('SQUAREBONUS top left');
+                        return;
+                    };
+                };
+            };
+        };
+        if (piecesInRow <=5 && column_clicked <=6){
+            if (piecesInRow >=0 && column_clicked >=1){
+                if (gameArray[piecesInRow + 1][column_clicked - 1].token === currentPlayer.tokenNumber) {
+                    if (gameArray[piecesInRow - 0][column_clicked - 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow + 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
+                        currentPlayer.squareBonus += 1;
+                        console.log('SQUAREBONUS bottom left');
+                        return;
+                    };
+                };
+            };
+        };
+        if (piecesInRow <=5 && column_clicked<=5){
+            if (piecesInRow >=0 && column_clicked >=0){
+                if (gameArray[piecesInRow + 1][column_clicked + 1].token === currentPlayer.tokenNumber) {
+                    if (gameArray[piecesInRow - 0][column_clicked + 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow + 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
+                        currentPlayer.squareBonus += 1;
+                        console.log('SQUAREBONUS bottom right');
+                        return;
+                    };
+                };
+            };
+        };
     };
+
+    function bonus(){
+        if (currentPlayer.squareBonus === 1){
+            //squareBonus modal HERE~~~~~~~~~~~~~~~~~~
+            //add piece 3 on click
+        }
+        changeTurn();
+    }
 
     function winCondition(row, column, array, player) {
         // console.log('chickens');
@@ -187,7 +215,8 @@ function displayToken(piecesInRow, column_clicked) {
                 check_column = column + column_direction;
             }
             if (inline_counter >= 4) {
-                console.log('winner winner chicken dinner for ' + player)
+                win();
+                console.log('winner winner chicken dinner for ' + player);
                 return true
             }
         }
@@ -400,10 +429,6 @@ function displayToken(piecesInRow, column_clicked) {
 
 //Functions for win and draw modals
 
-    function winModal() {
-        $(".winModal").show()
-    }
-
     function drawModal() {
         $(".drawModal").show()
     }
@@ -426,4 +451,43 @@ function returnPlayerNumber (currentPlayer) {
         playerNumber = 2;
     }
     return playerNumber
+}
+// Get the startMenu modal
+var modal = document.getElementById('startModal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+//Clear start menu input field upon click so user can enter name:
+
+$('#player1_input').focus(function() {
+    $(this).val('');
+});
+$('#player2_input').focus(function() {
+    $(this).val('');
+});
+
+function clickButton() {
+    $("#playButton").click(getInput)
+}
+function getInput() {
+    var userInput = $("#player1_input").val();
+    var userInput = $("#player2_input").val();
+    console.log("This is the user input: ", userInput);
+}
+
+function win() {
+    document.getElementById('winModal').style.display='block'
+}
+// Get the modal
+var winmodal = document.getElementById('winModal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == winmodal) {
+        modal.style.display = "none";
+    }
 }
