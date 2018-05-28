@@ -4,12 +4,15 @@ function initializeGame(){
     attachClickHandlers();
     currentPlayer = player[0];
     $(".player1").find(".token1").hide();
+    startMenu();
 
 };
 
 function attachClickHandlers(){
     $(".forfeitButton").on("click", resetGame);
     $(".column").on("click", piecePlacement);
+    $("#playButton").on("click", getInput);
+
 
 };
 
@@ -427,8 +430,10 @@ function returnPlayerNumber (currentPlayer) {
     }
     return playerNumber
 }
-// Get the startMenu modal
-var modal = document.getElementById('startModal');
+function startMenu(){
+        document.getElementById('startModal').style.display='block'
+}
+        var modal = document.getElementById('startModal');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -445,13 +450,11 @@ $('#player2_input').focus(function() {
     $(this).val('');
 });
 
-function clickButton() {
-    $("#playButton").click(getInput)
-}
+
 function getInput() {
-    var userInput = $("#player1_input").val();
-    var userInput = $("#player2_input").val();
-    console.log("This is the user input: ", userInput);
+    player[0].name = $("#player1_input").val();
+    player[1].name = $("#player2_input").val();
+    console.log("This is the user input: ", player[0].name, player[1].name);
 }
 
 function win() {
