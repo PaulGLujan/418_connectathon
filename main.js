@@ -2,7 +2,7 @@ $(document).ready(initializeGame);
 
 function initializeGame(){
     attachClickHandlers();
-    currentPlayer = player[0];
+    
     $(".player1").find(".token1").hide();
     startMenu();
 
@@ -12,8 +12,6 @@ function attachClickHandlers(){
     $(".forfeitButton").on("click", resetGame);
     $(".column").on("click", piecePlacement);
     $("#playButton").on("click", getInput);
-
-
 };
 
 
@@ -32,26 +30,32 @@ var piecesInColumn = 0;
 var player = [];
 player[0] = {
     name: "player1",
+    tokenNumber: 1,
     points: 0,
+    squareBonus: 0,
     gamesWon: 0,
     gamesLost: 0,
     gamesTied: 0,
 };
 player[1] = {
     name: "player2",
+    tokenNumber: 2,
     points: 0,
+    squareBonus: 0,
     gamesWon: 0,
     gamesLost: 0,
     gamesTied: 0,
 };
 
+var currentPlayer = player[0];
 
-function placePlayerToken(piecesInRow) {
+function placePlayerToken(piecesInRow, currentPlayer) {
     if (currentPlayer === player[0]) {
         gameArray[piecesInRow][column_clicked].token = 1;
     } else if (currentPlayer === player[1]) {
         gameArray[piecesInRow][column_clicked].token = 2;
     }
+    squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked);
 }
 
 
@@ -71,18 +75,17 @@ function displayToken(piecesInRow, column_clicked) {
             currentPlayer = player[1];
         } else if (currentPlayer === player[1]) {
             currentPlayer = player[0];
-        }
-        ;
+        };
     };
 
     function piecePlacement() {
         var jQueryObj = $(this);
         columnIndex(jQueryObj);
         var rowPieceShouldBePlaced = rowIndex();
-        placePlayerToken(rowToPlacePiece);
+        placePlayerToken(rowToPlacePiece, currentPlayer);
         displayToken(rowPieceShouldBePlaced, column_clicked);   
         var playerNumber = returnPlayerNumber(currentPlayer);
-        winCondition(rowToPlacePiece, column_clicked, gameArray, playerNumber);
+        winCondition(rowToPlacePiece, column_clicked, gameArray, currentPlayer);
         changeTurn();
         console.log('Piece placement function working');
         console.log('This is: ', this);
@@ -90,7 +93,7 @@ function displayToken(piecesInRow, column_clicked) {
 
     function columnIndex(jQueryObj) {
 
-        column_clicked = jQueryObj.attr("id");
+        column_clicked = parseInt(jQueryObj.attr("id"));
 
         console.log('The column clicked was: ', column_clicked);
     }
@@ -112,40 +115,60 @@ function displayToken(piecesInRow, column_clicked) {
 
 
 // 2x2 SQUARE BONUS
-    function squareBonusCheck(boardArrayClick) {
-        if (boardArray[row - 1][column + 1] === 'X') {
-            if (boardArray[row - 0][column + 1] === 'X' && boardArray[row - 1][column - 0] === 'X') {
-                console.log('SQUAREBONUS top right');
-                return;
-            }
-            ;
-        }
-        ;
-        if (boardArray[row - 1][column - 1] === 'X') {
-            if (boardArray[row - 0][column - 1] === 'X' && boardArray[row - 1][column - 0] === 'X') {
-                console.log('SQUAREBONUS top left');
-                return;
-            }
-            ;
-        }
-        ;
-        if (boardArray[row + 1][column - 1] === 'X') {
-            if (boardArray[row - 0][column - 1] === 'X' && boardArray[row + 1][column - 0] === 'X') {
-                console.log('SQUAREBONUS bottom left');
-                return;
-            }
-            ;
-        }
-        ;
-        if (boardArray[row + 1][column + 1] === 'X') {
-            if (boardArray[row - 0][column + 1] === 'X' && boardArray[row + 1][column - 0] === 'X') {
-                console.log('SQUAREBONUS bottom right');
-                return;
-            }
-            ;
-        }
-        ;
+    function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked) {
+        if (piecesInRow <=6 && column_clicked <=5){
+            if(piecesInRow >=1 && column_clicked >=0){
+                if (gameArray[piecesInRow - 1][column_clicked + 1].token === currentPlayer.tokenNumber) {
+                    if (gameArray[piecesInRow - 0][column_clicked + 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow - 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
+                        currentPlayer.squareBonus += 1;
+                        console.log('SQUAREBONUS top right');
+                        return;
+                    };
+                };
+            };
+        };
+        if (piecesInRow <=6 && column_clicked <=6){
+            if (piecesInRow >=1 && column_clicked >=1){
+                if (gameArray[piecesInRow - 1][column_clicked - 1].token === currentPlayer.tokenNumber) {
+                    if (gameArray[piecesInRow - 0][column_clicked - 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow - 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
+                        currentPlayer.squareBonus += 1;
+                        console.log('SQUAREBONUS top left');
+                        return;
+                    };
+                };
+            };
+        };
+        if (piecesInRow <=5 && column_clicked <=6){
+            if (piecesInRow >=0 && column_clicked >=1){
+                if (gameArray[piecesInRow + 1][column_clicked - 1].token === currentPlayer.tokenNumber) {
+                    if (gameArray[piecesInRow - 0][column_clicked - 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow + 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
+                        currentPlayer.squareBonus += 1;
+                        console.log('SQUAREBONUS bottom left');
+                        return;
+                    };
+                };
+            };
+        };
+        if (piecesInRow <=5 && column_clicked<=5){
+            if (piecesInRow >=0 && column_clicked >=0){
+                if (gameArray[piecesInRow + 1][column_clicked + 1].token === currentPlayer.tokenNumber) {
+                    if (gameArray[piecesInRow - 0][column_clicked + 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow + 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
+                        currentPlayer.squareBonus += 1;
+                        console.log('SQUAREBONUS bottom right');
+                        return;
+                    };
+                };
+            };
+        };
     };
+
+    function bonus(){
+        if (currentPlayer.squareBonus === 1){
+            //squareBonus modal HERE~~~~~~~~~~~~~~~~~~
+            //add piece 3 on click
+        }
+        changeTurn();
+    }
 
     function winCondition(row, column, array, player) {
         // console.log('chickens');
@@ -155,7 +178,7 @@ function displayToken(piecesInRow, column_clicked) {
         // console.log('player:', player);
         row = Number(row);
         column = Number(column);
-        if (array[row][column].token !== player) {
+        if (array[row][column].token !== player.tokenNumber) {
             return false
         }
         var row_direction_array = [0, -1, -1, -1];
@@ -175,7 +198,7 @@ function displayToken(piecesInRow, column_clicked) {
                 else if (array[check_row][check_column] === undefined) {
                 }
                 else {
-                    while (array[check_row][check_column].token === player) {
+                    while (array[check_row][check_column].token === player.tokenNumber) {
                         inline_counter += 1;
                         check_row += row_direction;
                         check_column += column_direction;
@@ -194,7 +217,7 @@ function displayToken(piecesInRow, column_clicked) {
             }
             if (inline_counter >= 4) {
                 win();
-                console.log('winner winner chicken dinner for ' + player);
+                console.log('winner winner chicken dinner for ' + player.name);
                 return true
             }
         }
