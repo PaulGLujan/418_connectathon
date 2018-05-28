@@ -12,8 +12,6 @@ function attachClickHandlers(){
     $(".forfeitButton").on("click", resetGame);
     $(".column").on("click", piecePlacement);
     $("#playButton").on("click", getInput);
-
-
 };
 
 
