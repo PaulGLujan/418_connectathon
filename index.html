@@ -16,15 +16,11 @@
     <img class="headerImage" src="DPsprawl.png">
 </header>
 
+    <div id="startMenu"></div>
+    <div id="dPool"><h3>DEADPOOL</h3></div>
+    <div id="connectFour"><h3>CONNECT FOUR</h3></div>
+
 <main>
-
-    <div id="startMenu">
-    <p>Click to Start Game</p>
-        <div id="startImgCont" onclick="document.getElementById('startModal').style.display='block'" style="width:auto;">
-            <img id="startImg" src="DPgamepiecesmall.png">
-    </div>
-    </div>
-
     <div class="playerBoxBorder">
         <div class="playerBox1 playerBox">
             <div class="pieceDisplay1">
@@ -33,12 +29,13 @@
             <div class="player1Name"></div>
             <div class="statsBox">
                 <div class="statsDisplay">
-                    <h1>Stats</h1>
-                    <h1>Games Played</h1>
-                    <h1>Attempts</h1>
+                    <div id="player1name">Player 1</div>
+                    <div id="stats1"><p>Stats</p></div>
+                    <div id="gplayed1"><p>Games Played</p></div>
+                    <div id="attempts1"><p>Attempts</p></div>
                 </div>
                 <div class="forfeitButton">
-                    <button id="player1">
+                    <button id="forfeitbtnp1">
                         Forfeit
                     </button>
                 </div>
@@ -236,19 +233,21 @@
             <div class="pieceDisplay2">
                 <img id="smgamepiece" src="SMgamepiece.png">
             </div>
-            <div class="player2Name"></div>
+            <div class="player1Name"></div>
             <div class="statsBox">
                 <div class="statsDisplay">
-                    <h1>Stats</h1>
-                    <h1>Games Played</h1>
-                    <h1>Attempts</h1>
+                    <div id="player2name">Player 1</div>
+                    <div id="stats2"><p>Stats</p></div>
+                    <div id="gplayed2"><p>Games Played</p></div>
+                    <div id="attempts2"><p>Attempts</p></div>
                 </div>
                 <div class="forfeitButton">
-                    <button id="player2">
+                    <button id="forfeitbtnp2">
                         Forfeit
                     </button>
-            </div>
+                </div>
         </div>
+    </div>
     </div>
 </main>
 
@@ -270,7 +269,7 @@
             <input type="text" id="player2_input" onfocus="this.value=''" value="Player 1">
         </div>
 
-        <button id="playButton" onclick="">Play Now</button>
+        <button id="playButton" type="button">Play Now</button>
 
     </form>
 </div>
@@ -282,16 +281,12 @@
                 <span onclick="document.getElementById('winModal').style.display='none'" class="close" title="Close Modal">&times;</span>
             </div>
             <div id="winModTextbox">
-                <p>Winner winner chicken dinner...</p>
-                <p>But better to celebrate with a chimichanga</p>
+                <p>Winner winner chimichangas...</p>
             </div>
 
 
         </form>
     </div>
 
-
-</div>
-</div>
 </body>
 </html>

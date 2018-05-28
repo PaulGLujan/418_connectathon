@@ -1,12 +1,12 @@
-/* html {
-    width: 70%;
-    height: 70%;
-} */
+html {
+    width: 85%;
+    height: 100%;
+}
+
 body {
-    height: 100vh;
-    width: 100vw;
     margin: 0;
-    /* align-content: center; */
+    align-content: center;
+    background-size: cover;
     background-image: url(dpCrotch.jpg);
     background-attachment: fixed;
     background-position: center;
@@ -17,9 +17,9 @@ body {
 
 .header1 {
     background-color: black;
-    height: 20vh;
-    width: 100vw;
-    /* border: 1px solid red; */
+    height: 10vw;
+    width: 98.7vw;
+    border: 1px solid red;
 }
 
 .headerImage {
@@ -43,56 +43,96 @@ main {
     display: inline-block;
 }
 
-.playerBox {
-    position: relative;
-    top: 7%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
 .playerBox1 {
+    position: relative;
+    bottom: 16vw;
     width: 15vw;
     background-color: darkslategray;
     border-radius: 8px;
     border: 1px solid red;
-    height: 49vh;
+    height: 30vw;
     text-align: center;
     display: inline-block;
     vertical-align: top;
-    opacity: 0.8;
+    opacity: .7;
 }
 
-#player1 {
+#forfeitbtnp1 {
+    color: white;
     width: 6em;
     height: 2em;
+    border-radius: 4px;
+    background-color: black;
+    font-family: "Orbitron";
+    position: relative;
+    bottom: 8.5vw;
 }
 
-.forfeitButton {
-    position: relative;
-    top: 13%;
+#player1name {
+    height: 4vw;
+    font-size: 2.5em;
 }
+#stats1 {
+    height: 4vw;
+    font-size: 2.5em;
+}
+#gplayed1 {
+    height: 4vw;
+    font-size: 2.5em;
+}
+#attempts1 {
+    height: 4vw;
+    font-size: 2.5em;
+}
+
 
 .playerBox2 {
+    position: relative;
+    bottom: 16vw;
     width: 15vw;
+    left: 5vw;
     background-color: darkslategray;
     border-radius: 8px;
     border: 1px solid red;
-    height: 49vh;
+    height: 30vw;
     text-align: center;
     display: inline-block;
     vertical-align: top;
-    opacity: 0.8;
+    opacity: .7;
+}
+#forfeitbtnp2 {
+    color: white;
+    width: 6em;
+    height: 2em;
+    border-radius: 4px;
+    background-color: black;
+    font-family: "Orbitron";
+    position: relative;
+    bottom: 8.5vw;
+}
+
+#player2name {
+    height: 4vw;
+    font-size: 2.5em;
+}
+#stats2 {
+    height: 4vw;
+    font-size: 2.5em;
+}
+#gplayed2 {
+    height: 4vw;
+    font-size: 2.5em;
+}
+#attempts2 {
+    height: 4vw;
+    font-size: 2.5em;
 }
 .pieceDisplay1 {
-    background-color: darkslategray;
     width: 10vw;
     position: relative;
-    top: 4vh;
     left: .5vw;
 }
 .pieceDisplay2 {
-    background-color: darkslategray;
-    height: 20vh;
     width: 10vw;
     position: relative;
     left: .5vw;
@@ -119,11 +159,10 @@ main {
     margin: 0;
     display: inline-block;
     vertical-align: top;
-    top: 14%;
+    bottom: 16vw;
 }
 .row0, .row1, .row2, .row3, .row4, .row5, .row6 {
     display: inline-block;
-    background-color: darkred;
     height: 14.2857143%;
     width: 100%;
 }
@@ -140,9 +179,11 @@ main {
     height: 90%;
     width: 90%;
     border: 1px solid white;
+    border-radius: 50%;
     top: 50%;
+    background-color: darkred;
     left: 50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
 }
 
 .showPlayer2 {
@@ -206,7 +247,7 @@ input[type=text], input[type=password] {
 #dpCF {
     width: 60%;
     border-radius: 8px;
-    border: 1px solid white;
+    border: 1px solid red;
 }
 
 .container {
@@ -237,7 +278,7 @@ span {
 
 /* Modal Content/Box */
 .startmodal-content {
-    background-color: darkslateblue;
+    background-color: black;
     margin: 5% auto 15% auto;
     border: 2px solid red;
     border-radius: 8px;
@@ -287,16 +328,7 @@ label {
     position: relative;
     bottom: -19px;
 }
-#startMenu {
-    margin-left: 2vw;
-    height: 14%;
-    position: relative;
-    bottom: 19%;
-    font-family: "Orbitron";
-    color: red;
-    font-size: 1.6vw;
-    text-shadow: 0 0 3px white;
-}
+
 #startImg {
     width: 4vw;
     height:auto;
@@ -304,10 +336,33 @@ label {
     left: 18%;
     bottom: 5vw;
 }
+#dPool {
+    font-family: "Orbitron";
+    color: white;
+    font-size: 3vw;
+    text-shadow: 0 0 3px red;
+    position: relative;
+    left: 9vw;
+    bottom: 11vw;
+    width: 30%;
+    text-align: center;
+}
+#connectFour {
+    font-family: "Orbitron";
+    color: white;
+    font-size: 3vw;
+    text-shadow: 0 0 3px red;
+    position: relative;
+    bottom: 19vw;
+    left: 57vw;
+    width: 39%;
+    text-align: center;
+}
 #attempts {
 
     height: 80px;
     position: relative;
+    background-color: black;
 
 
 }
