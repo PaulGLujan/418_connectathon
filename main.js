@@ -304,6 +304,7 @@ function displayToken(piecesInRow, column_clicked) {
     function resetGame() {
         $(".column").removeClass("showPlayer1");
         $(".column").removeClass("showPlayer2");
+        removeAllSpinClass();
         gameArray.length = 0;
         gameArray = [
             [ //column 0
@@ -495,6 +496,7 @@ function getInput() {
 }
 
 function win() {
+    resetGame()
     document.getElementById('winModal').style.display='block'
 }
 // Get the modal
