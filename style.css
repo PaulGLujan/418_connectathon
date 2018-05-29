@@ -179,10 +179,26 @@ main {
     width: 90%;
     border: 1px solid white;
     border-radius: 50%;
-    top: 50%;
+    top: 5%;
     background-color: darkred;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 5%;
+}
+
+.spin_animation {
+    animation-name: spin;
+    animation-duration: 5s;
+    /* animation-timing-function: ease; */
+    /* animation-iteration-count: 3; */
+}
+
+@keyframes spin {
+    0%   {transform: rotateY(0deg) translateY(0);
+        }
+    /* 25%  {transform: rotateY(90deg);}
+    50%  {transform: rotateY(180deg);}
+    75%  {transform: rotateY(270deg);} */
+    100% {transform: rotateY(1800deg) translateY(0);
+        }
 }
 
 .showPlayer2 {

@@ -85,6 +85,7 @@ function displayToken(piecesInRow, column_clicked) {
         placePlayerToken(rowToPlacePiece, currentPlayer);
         displayToken(rowPieceShouldBePlaced, column_clicked);   
         var playerNumber = returnPlayerNumber(currentPlayer);
+        removeAllSpinClass();
         winCondition(rowToPlacePiece, column_clicked, gameArray, currentPlayer);
         changeTurn();
         console.log('Piece placement function working');
@@ -200,6 +201,7 @@ function displayToken(piecesInRow, column_clicked) {
                 else {
                     while (array[check_row][check_column].token === player.tokenNumber) {
                         inline_counter += 1;
+                        addSpin(check_row, check_column);
                         check_row += row_direction;
                         check_column += column_direction;
                         if (array[check_row] === undefined) {
@@ -491,4 +493,15 @@ window.onclick = function(event) {
     if (event.target == winmodal) {
         modal.style.display = "none";
     }
+}
+
+function addSpin ( row, column ) {
+    var rowString = '.row' + row;
+    var columnString = '.column' + column;
+
+    $(rowString).find(columnString).addClass('spin_animation');
+}
+
+function removeAllSpinClass () {
+    $('.gameBoard').find('*').removeClass('spin_animation');
 }
