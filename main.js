@@ -12,6 +12,7 @@ function attachClickHandlers(){
     $(".forfeitButton").on("click", resetGame);
     $(".column").on("click", piecePlacement);
     $("#playButton").on("click", getInput);
+    $("#playButton").on("click", hideStartMenu)
 };
 
 
@@ -298,9 +299,13 @@ function displayToken(piecesInRow, column_clicked) {
 
     ];
 
+
 //reset game will reset the Game array to "empty" and will reset and refresh stats
     function resetGame() {
-        var gameArray = [
+        $(".column").removeClass("showPlayer1");
+        $(".column").removeClass("showPlayer2");
+        gameArray.length = 0;
+        gameArray = [
             [ //column 0
 
                 {token: null},
@@ -475,10 +480,17 @@ $('#player2_input').focus(function() {
     $(this).val('');
 });
 
+function hideStartMenu() {
+    document.getElementById('startModal').style.display='none'
+
+}
 
 function getInput() {
     player[0].name = $("#player1_input").val();
     player[1].name = $("#player2_input").val();
+    $("#player1name").text(player[0].name);
+    $("#player2name").text(player[1].name);
+
     console.log("This is the user input: ", player[0].name, player[1].name);
 }
 
