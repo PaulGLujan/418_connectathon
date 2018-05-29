@@ -218,10 +218,13 @@ function displayToken(piecesInRow, column_clicked) {
                 check_row = row + row_direction;
                 check_column = column + column_direction;
             }
-            if (inline_counter >= 4) {
+            if (inline_counter === 4) {
                 win();
                 console.log('winner winner chicken dinner for ' + player.name);
                 return true
+            } else if (inline_counter > 4) {
+                bigWin();
+                console.log('Extra big win!')
             }
         }
         return false
@@ -499,6 +502,9 @@ function win() {
     resetGame()
     document.getElementById('winModal').style.display='block'
 }
+function bigWin () {
+    document.getElementById('bigWinModal').style.display='block'
+} 
 // Get the modal
 var winmodal = document.getElementById('winModal');
 
