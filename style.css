@@ -505,15 +505,7 @@ span {
     position: relative;
     left: 50%;
 }
-/* The Close Button (x) */
-.close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: white;
-    font-size: 24px;
 
-}
 .bonusimgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
@@ -563,20 +555,7 @@ span {
     left: 50%;
     border-radius: 4px;
 }
-/* The Close Button (x) */
-.close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: white;
-    font-size: 24px;
 
-}
-
-.close:hover,
-.close:focus {
-    color: red;
-}
 
 /* Add Zoom Animation */
 .animate {
@@ -629,6 +608,9 @@ span {
     color: black;
     font-size: 1.5vw;
 }
+.bigwinimgcontainer {
+    position: relative;
+}
 #bigwinModTextbox {
     background-color: whitesmoke;
     opacity: 1.6;
@@ -638,20 +620,8 @@ span {
     left: 23%;
     border-radius: 4px;
 }
-/* The Close Button (x) */
-.close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: white;
-    font-size: 24px;
 
-}
 
-.close:hover,
-.close:focus {
-    color: red;
-}
 .bigwincontent:hover {
     /* Start the shake animation and make the animation last for 0.5 seconds */
     animation: shake 0.5s;
