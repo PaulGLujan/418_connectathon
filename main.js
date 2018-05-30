@@ -50,10 +50,19 @@ player[1] = {
 var currentPlayer = player[0];
 
 function placePlayerToken(piecesInRow, currentPlayer) {
-    if (currentPlayer === player[0]) {
-        gameArray[piecesInRow][column_clicked].token = 1;
-    } else if (currentPlayer === player[1]) {
-        gameArray[piecesInRow][column_clicked].token = 2;
+    
+    if (player[0].squareBonus === 0 && player[1].squareBonus === 0){
+        if (currentPlayer === player[0]) {
+            gameArray[piecesInRow][column_clicked].token = 1;
+        } else if (currentPlayer === player[1]) {
+            gameArray[piecesInRow][column_clicked].token = 2;
+        }
+        changeTurn();
+    } else if (currentPlayer.squareBonus === 1){
+        gameArray[piecesInRow][column_clicked].token = 3;
+        //squareBonus modal HERE~~~~~~~~~~~~~~~~~~
+        currentPlayer.squareBonus = 0
+        changeTurn();
     }
     squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked);
 }
@@ -64,9 +73,10 @@ function placePlayerToken(piecesInRow, currentPlayer) {
 function displayToken(piecesInRow, column_clicked) {
     if (gameArray[piecesInRow][column_clicked].token === 1) {
         $(".row" + piecesInRow + " .column" + column_clicked).addClass("showPlayer1")
-
     } else if (gameArray[piecesInRow][column_clicked].token === 2) {
         $(".row" + piecesInRow + " .column" + column_clicked).addClass("showPlayer2")
+    } else if (gameArray[piecesInRow][column_clicked].token === 3) {
+        $(".row" + piecesInRow + " .column" + column_clicked).addClass("showPlayer3")
     }
 }
 
@@ -85,8 +95,11 @@ function displayToken(piecesInRow, column_clicked) {
         placePlayerToken(rowToPlacePiece, currentPlayer);
         displayToken(rowPieceShouldBePlaced, column_clicked);   
         var playerNumber = returnPlayerNumber(currentPlayer);
+
+
         winCondition(rowToPlacePiece, column_clicked, gameArray, currentPlayer);
-        changeTurn();
+
+
         console.log('Piece placement function working');
         console.log('This is: ', this);
     }
@@ -115,60 +128,57 @@ function displayToken(piecesInRow, column_clicked) {
 
 
 // 2x2 SQUARE BONUS
-    function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked) {
-        if (piecesInRow <=6 && column_clicked <=5){
-            if(piecesInRow >=1 && column_clicked >=0){
-                if (gameArray[piecesInRow - 1][column_clicked + 1].token === currentPlayer.tokenNumber) {
-                    if (gameArray[piecesInRow - 0][column_clicked + 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow - 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
-                        currentPlayer.squareBonus += 1;
-                        console.log('SQUAREBONUS top right');
-                        return;
-                    };
-                };
-            };
-        };
-        if (piecesInRow <=6 && column_clicked <=6){
-            if (piecesInRow >=1 && column_clicked >=1){
-                if (gameArray[piecesInRow - 1][column_clicked - 1].token === currentPlayer.tokenNumber) {
-                    if (gameArray[piecesInRow - 0][column_clicked - 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow - 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
-                        currentPlayer.squareBonus += 1;
-                        console.log('SQUAREBONUS top left');
-                        return;
-                    };
-                };
-            };
-        };
-        if (piecesInRow <=5 && column_clicked <=6){
-            if (piecesInRow >=0 && column_clicked >=1){
-                if (gameArray[piecesInRow + 1][column_clicked - 1].token === currentPlayer.tokenNumber) {
-                    if (gameArray[piecesInRow - 0][column_clicked - 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow + 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
-                        currentPlayer.squareBonus += 1;
-                        console.log('SQUAREBONUS bottom left');
-                        return;
-                    };
-                };
-            };
-        };
-        if (piecesInRow <=5 && column_clicked<=5){
-            if (piecesInRow >=0 && column_clicked >=0){
-                if (gameArray[piecesInRow + 1][column_clicked + 1].token === currentPlayer.tokenNumber) {
-                    if (gameArray[piecesInRow - 0][column_clicked + 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow + 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
-                        currentPlayer.squareBonus += 1;
-                        console.log('SQUAREBONUS bottom right');
-                        return;
-                    };
+function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked) {
+    if (piecesInRow <=6 && column_clicked <=5){
+        if(piecesInRow >=1 && column_clicked >=0){
+            if (gameArray[piecesInRow - 1][column_clicked + 1].token === currentPlayer.tokenNumber) {
+                if (gameArray[piecesInRow - 0][column_clicked + 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow - 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
+                    currentPlayer.squareBonus += 1;
+                    console.log('SQUAREBONUS top right');
+                    changeTurn();
+                    return;
                 };
             };
         };
     };
+    if (piecesInRow <=6 && column_clicked <=6){
+        if (piecesInRow >=1 && column_clicked >=1){
+            if (gameArray[piecesInRow - 1][column_clicked - 1].token === currentPlayer.tokenNumber) {
+                if (gameArray[piecesInRow - 0][column_clicked - 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow - 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
+                    currentPlayer.squareBonus += 1;
+                    console.log('SQUAREBONUS top left');
+                    changeTurn();
+                    return;
+                };
+            };
+        };
+    };
+    if (piecesInRow <=5 && column_clicked <=6){
+        if (piecesInRow >=0 && column_clicked >=1){
+            if (gameArray[piecesInRow + 1][column_clicked - 1].token === currentPlayer.tokenNumber) {
+                if (gameArray[piecesInRow - 0][column_clicked - 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow + 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
+                    currentPlayer.squareBonus += 1;
+                    console.log('SQUAREBONUS bottom left');
+                    changeTurn();
+                    return;
+                };
+            };
+        };
+    };
+    if (piecesInRow <=5 && column_clicked<=5){
+        if (piecesInRow >=0 && column_clicked >=0){
+            if (gameArray[piecesInRow + 1][column_clicked + 1].token === currentPlayer.tokenNumber) {
+                if (gameArray[piecesInRow - 0][column_clicked + 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow + 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
+                    currentPlayer.squareBonus += 1;
+                    console.log('SQUAREBONUS bottom right');
+                    changeTurn();
+                    return;
+                };
+            };
+        };
+    };
+};
 
-    function bonus(){
-        if (currentPlayer.squareBonus === 1){
-            //squareBonus modal HERE~~~~~~~~~~~~~~~~~~
-            //add piece 3 on click
-        }
-        changeTurn();
-    }
 
     function winCondition(row, column, array, player) {
         // console.log('chickens');
