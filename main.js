@@ -12,7 +12,8 @@ function attachClickHandlers(){
     $(".forfeitButton").on("click", resetGame);
     $(".column").on("click", piecePlacement);
     $("#playButton").on("click", getInput);
-    $("#playButton").on("click", hideStartMenu)
+    $("#playButton").on("click", hideStartMenu);
+    $("#playButton").on("click", resetGame);
 
     $('.gameBoard').on('mouseover', '.column0', hoverEffect);
     $('.gameBoard').on('mouseover', '.column1', hoverEffect);
@@ -117,15 +118,15 @@ function displayToken(piecesInRow, column_clicked) {
             changeTurn();
         }
 
-        console.log('Piece placement function working');
-        console.log('This is: ', this);
+        //console.log('Piece placement function working');
+        //console.log('This is: ', this);
     }
 
     function columnIndex(jQueryObj) {
 
         column_clicked = parseInt(jQueryObj.attr("id"));
 
-        console.log('The column clicked was: ', column_clicked);
+        //console.log('The column clicked was: ', column_clicked);
     }
 
 
@@ -152,6 +153,7 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
                 if (gameArray[piecesInRow - 0][column_clicked + 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow - 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
                     currentPlayer.squareBonus += 1;
                     console.log('SQUAREBONUS top right');
+                    bonus();
                     return;
                 };
             };
@@ -174,6 +176,7 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
                 if (gameArray[piecesInRow - 0][column_clicked - 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow + 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
                     currentPlayer.squareBonus += 1;
                     console.log('SQUAREBONUS bottom left');
+                    bonus();
                     return;
                 };
             };
@@ -185,6 +188,7 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
                 if (gameArray[piecesInRow - 0][column_clicked + 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow + 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
                     currentPlayer.squareBonus += 1;
                     console.log('SQUAREBONUS bottom right');
+                    bonus();
                     return;
                 };
             };
@@ -240,6 +244,7 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
                 check_column = column + column_direction;
             }
             if (inline_counter === 4) {
+
                 win();
                 console.log('winner winner chicken dinner for ' + player.name);
                 return true
@@ -410,7 +415,7 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
         ];
         reset_stats();
         display_stats();
-        console.log('Reset game function working.');
+        //console.log('Reset game function working.');
     }
 
 //
@@ -418,34 +423,32 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
 //this will count the number of games played
     function gamesPlayed() {
         games_played = games_played + 1;
-        console.log("games played has been incremented");
-        reset_stats();
+        //console.log("games played has been incremented", games_played);
         display_stats();
 
     }
 
 //function to display the stats
-    function display_stats() {
+function display_stats() {
 
-        $(".games-played .value").text(games_played);
-        $(".attempts .value").text(attempts);
-
-        /* if we want to include some sort of "accuracy"
-
-        if(attempts > 0){
-            accuracy = ((matches/attempts) * 100).toFixed(0) + '%';
-            $(".accuracy .value").text(accuracy);
-        } else {
-            accuracy = 0 + '%';
-            $(".accuracy .value").text(accuracy);
-        }*/
+        $("#gplayed1value").text(games_played-1);
+        $("#gplayed2value").text(games_played-1);
+        $("#gp1Wins").text(player[0].gamesWon);
+        $("#gp2Wins").text(player[1].gamesWon);
+        $("#gp1Lost").text(player[0].gamesLost);
+        $("#gp2Lost").text(player[1].gamesLost);
     }
 
 //reset the stats
     function reset_stats() {
 
-        games_played = 0;
-        attempts = 0;
+        $("#gplayed1value").text("0");
+        $("#gplayed2value").text("0");
+        $("#gp1Wins").text("0");
+        $("#gp2Wins").text("0");
+        $("#gp1Lost").text("0");
+        $("#gp2Lost").text("0");
+
     }
 
 
@@ -465,16 +468,9 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
 
 //Functions for win and draw modals
 
-    function drawModal() {
-        $(".drawModal").show()
-    }
 
     function hideWinModal() {
         $(".winModal").hide()
-    }
-
-    function hidDrawModal() {
-        $(".drawModal").hide()
     }
 
 function returnPlayerNumber (currentPlayer) {
@@ -489,7 +485,10 @@ function returnPlayerNumber (currentPlayer) {
     return playerNumber
 }
 function startMenu(){
-        document.getElementById('startModal').style.display='block'
+        document.getElementById('startModal').style.display='block';
+        gamesPlayed();
+        resetGame();
+
 }
         var modal = document.getElementById('startModal');
 
@@ -524,20 +523,27 @@ function getInput() {
 
 function win() {
     currentPlayer.gamesWon += 1;
+    console.log("this is win function", currentPlayer.gamesWon);
     resetGame();
+    gamesPlayed();
+    display_stats();
     document.getElementById('winModal').style.display='block'
 }
+
+
 function bigWin () {
     currentPlayer.gamesWon += 1;
     resetGame();
+    gamesPlayed();
+    display_stats();
     document.getElementById('bigWinModal').style.display='block'
 } 
 // Get the modal
-var winmodal = document.getElementById('winModal');
+var bigwinmodal = document.getElementById('bigWinModal');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == winmodal) {
+    if (event.target == bigwinmodal) {
         modal.style.display = "none";
     }
 }
@@ -566,3 +572,14 @@ function hoverEffectOff () {
     classString = '.' + classString;
     $(classString).removeClass('column_shadow');
 }
+
+function bonus() {
+        document.getElementById('bonusModal').style.display='block';
+
+        var bonusmodal = document.getElementById('bonusModal');
+
+window.onclick = function(event) {
+    if (event.target == bonusmodal) {
+        modal.style.display = "none";
+    }
+}}
