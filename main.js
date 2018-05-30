@@ -12,6 +12,7 @@ function attachClickHandlers(){
     $(".forfeitButton").on("click", resetGame);
     $(".column").on("click", piecePlacement);
     $("#playButton").on("click", getInput);
+    $("#playButton").on("click", hideStartMenu)
 };
 
 
@@ -95,8 +96,7 @@ function displayToken(piecesInRow, column_clicked) {
         placePlayerToken(rowToPlacePiece, currentPlayer);
         displayToken(rowPieceShouldBePlaced, column_clicked);   
         var playerNumber = returnPlayerNumber(currentPlayer);
-
-
+        removeAllSpinClass();
         winCondition(rowToPlacePiece, column_clicked, gameArray, currentPlayer);
 
 
@@ -210,6 +210,7 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
                 else {
                     while (array[check_row][check_column].token === player.tokenNumber) {
                         inline_counter += 1;
+                        addSpin(check_row, check_column);
                         check_row += row_direction;
                         check_column += column_direction;
                         if (array[check_row] === undefined) {
@@ -225,10 +226,13 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
                 check_row = row + row_direction;
                 check_column = column + column_direction;
             }
-            if (inline_counter >= 4) {
+            if (inline_counter === 4) {
                 win();
                 console.log('winner winner chicken dinner for ' + player.name);
                 return true
+            } else if (inline_counter > 4) {
+                bigWin();
+                console.log('Extra big win!')
             }
         }
         return false
@@ -306,9 +310,14 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
 
     ];
 
+
 //reset game will reset the Game array to "empty" and will reset and refresh stats
     function resetGame() {
-        var gameArray = [
+        $(".column").removeClass("showPlayer1");
+        $(".column").removeClass("showPlayer2");
+        removeAllSpinClass();
+        gameArray.length = 0;
+        gameArray = [
             [ //column 0
 
                 {token: null},
@@ -483,16 +492,30 @@ $('#player2_input').focus(function() {
     $(this).val('');
 });
 
+function hideStartMenu() {
+    document.getElementById('startModal').style.display='none'
+
+}
 
 function getInput() {
     player[0].name = $("#player1_input").val();
     player[1].name = $("#player2_input").val();
+    $("#player1name").text(player[0].name);
+    $("#player2name").text(player[1].name);
+
     console.log("This is the user input: ", player[0].name, player[1].name);
 }
 
 function win() {
+    currentPlayer.gamesWon += 1;
+    resetGame();
     document.getElementById('winModal').style.display='block'
 }
+function bigWin () {
+    currentPlayer.gamesWon += 1;
+    resetGame();
+    document.getElementById('bigWinModal').style.display='block'
+} 
 // Get the modal
 var winmodal = document.getElementById('winModal');
 
@@ -501,4 +524,15 @@ window.onclick = function(event) {
     if (event.target == winmodal) {
         modal.style.display = "none";
     }
+}
+
+function addSpin ( row, column ) {
+    var rowString = '.row' + row;
+    var columnString = '.column' + column;
+
+    $(rowString).find(columnString).addClass('spin_animation');
+}
+
+function removeAllSpinClass () {
+    $('.gameBoard').find('*').removeClass('spin_animation');
 }
