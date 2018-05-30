@@ -331,6 +331,9 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
     function resetGame() {
         $(".column").removeClass("showPlayer1");
         $(".column").removeClass("showPlayer2");
+        $(".column").removeClass("showPlayer3");
+        player[0].squareBonus = 0;
+        player[1].squareBonus = 0;
         removeAllSpinClass();
         gameArray.length = 0;
         gameArray = [
