@@ -188,6 +188,10 @@ main {
     left: 5%;
 }
 
+.column_shadow {
+    box-shadow: 0 2vmin 4vmin red;
+}
+
 .spin_animation {
     animation-name: spin;
     animation-duration: 5s;
