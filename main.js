@@ -13,6 +13,22 @@ function attachClickHandlers(){
     $(".column").on("click", piecePlacement);
     $("#playButton").on("click", getInput);
     $("#playButton").on("click", hideStartMenu)
+
+    $('.gameBoard').on('mouseover', '.column0', hoverEffect);
+    $('.gameBoard').on('mouseover', '.column1', hoverEffect);
+    $('.gameBoard').on('mouseover', '.column2', hoverEffect);
+    $('.gameBoard').on('mouseover', '.column3', hoverEffect);
+    $('.gameBoard').on('mouseover', '.column4', hoverEffect);
+    $('.gameBoard').on('mouseover', '.column5', hoverEffect);
+    $('.gameBoard').on('mouseover', '.column6', hoverEffect);
+
+    $('.gameBoard').on('mouseleave', '.column0', hoverEffectOff);
+    $('.gameBoard').on('mouseleave', '.column1', hoverEffectOff);
+    $('.gameBoard').on('mouseleave', '.column2', hoverEffectOff);
+    $('.gameBoard').on('mouseleave', '.column3', hoverEffectOff);
+    $('.gameBoard').on('mouseleave', '.column4', hoverEffectOff);
+    $('.gameBoard').on('mouseleave', '.column5', hoverEffectOff);
+    $('.gameBoard').on('mouseleave', '.column6', hoverEffectOff);
 };
 
 
@@ -535,4 +551,18 @@ function addSpin ( row, column ) {
 
 function removeAllSpinClass () {
     $('.gameBoard').find('*').removeClass('spin_animation');
+}
+
+function hoverEffect () {
+    var classString = $(this).attr('class');
+    classString = classString.slice(0, 7);
+    classString = '.' + classString;
+    $(classString).addClass('column_shadow');
+}
+
+function hoverEffectOff () {
+    var classString = $(this).attr('class');
+    classString = classString.slice(0, 7);
+    classString = '.' + classString;
+    $(classString).removeClass('column_shadow');
 }
