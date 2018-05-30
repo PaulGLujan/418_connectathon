@@ -499,10 +499,12 @@ function getInput() {
 }
 
 function win() {
+    currentPlayer.gamesWon += 1;
     resetGame()
     document.getElementById('winModal').style.display='block'
 }
 function bigWin () {
+    currentPlayer.gamesWon += 1;
     document.getElementById('bigWinModal').style.display='block'
 } 
 // Get the modal
