@@ -30,9 +30,10 @@
             <div class="statsBox">
                 <div class="statsDisplay">
                     <div id="player1name">Player 1</div>
-                    <div id="stats1"><p>Stats</p></div>
-                    <div id="gplayed1"><p>Games Played</p></div>
-                    <div id="attempts1"><p>Attempts</p></div>
+                    <div id="gplayed1" class="value">Games Played</div>
+                    <div id="gplayed1value"></div>
+                    <div id="wins1">WINS</div>
+                    <div id="gp1Wins"></div>
                 </div>
                 <div class="forfeitButton">
                     <button id="forfeitbtnp1">
@@ -226,6 +227,12 @@
             </div>
 
         </div>
+        <div id="restartGame" onclick="startMenu()">
+            <img id="restartimg" src="restartgame.png">
+        </div>
+        <div id="restartGameText">
+            <p id="restartP">reset game</p>
+        </div>
     </div>
 
     <div class="playerBoxBorder">
@@ -237,9 +244,11 @@
             <div class="statsBox">
                 <div class="statsDisplay">
                     <div id="player2name">Player 2</div>
-                    <div id="stats2"><p>Stats</p></div>
-                    <div id="gplayed2"><p>Games Played</p></div>
-                    <div id="attempts2"><p>Attempts</p></div>
+                    <div id="gplayed2">Games Played</div>
+                    <div id="gplayed2value"></div>
+                    <div id="wins2">WINS</div>
+                    <div id="gp2Wins"></div>
+
                 </div>
                 <div class="forfeitButton">
                     <button id="forfeitbtnp2">
@@ -267,7 +276,7 @@
 
         <div class="container">
             <img class="imgtoken" src="SMgamepiecesmall.png">
-            <input type="text" id="player2_input" onfocus="this.value=''" value="Player 1">
+            <input type="text" id="player2_input" onfocus="this.value=''" value="Player 2">
         </div>
 
         <button id="playButton" type="button">Play Now</button>
@@ -291,17 +300,30 @@
 
     <div id="bigWinModal">
 
-        <form class="wincontent animate">
-            <div class="winimgcontainer">
+        <div class="bigwincontent animate">
+            <div class="bigwinimgcontainer">
                 <span onclick="document.getElementById('bigWinModal').style.display='none'" class="close" title="Close Modal">&times;</span>
             </div>
-            <div id="winModTextbox">
-                <p>Big big winner!</p>
+            <div id="bigwinModTextbox">
+                <p>Make it rain!! You just got 5 in a row!</p>
             </div>
 
 
-        </form>
+        </div>
     </div>
+
+<div id="bonusModal">
+
+    <form class="bonuscontent animate">
+        <div class="bonusimgcontainer">
+            <span onclick="document.getElementById('bonusModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+        <div id="bonusModTextbox">
+            <p>You have been granted this magical chimichanga which gives you an extra turn!</p>
+            <p>Make a move now to use this chimichanga token to hinder your opponent's progress!</p>
+        </div>
+    </form>
+</div>
 
 
 </body>

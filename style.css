@@ -50,13 +50,13 @@ main {
     background-color: darkslategray;
     border-radius: 8px;
     border: 1px solid red;
-    height: 30vw;
+    height: 27vw;
     text-align: center;
     display: inline-block;
     vertical-align: top;
     opacity: .7;
     top: 4vw;
-    left: 9vw;
+    left: 19vw;
 }
 
 #forfeitbtnp1 {
@@ -67,7 +67,7 @@ main {
     background-color: black;
     font-family: "Orbitron";
     position: relative;
-    bottom: 8.5vw;
+    bottom: 12.5vw;
 }
 
 #player1name {
@@ -79,9 +79,10 @@ main {
     font-size: 2.5em;
 }
 #gplayed1 {
-    height: 4vw;
+    height: 2vw;
     font-size: 2.5em;
 }
+
 #attempts1 {
     height: 4vw;
     font-size: 2.5em;
@@ -92,11 +93,11 @@ main {
     position: relative;
     bottom: -4vw;
     width: 15vw;
-    left: 4vw;
+    left: 13vw;
     background-color: darkslategray;
     border-radius: 8px;
     border: 1px solid red;
-    height: 30vw;
+    height: 27vw;
     text-align: center;
     display: inline-block;
     vertical-align: top;
@@ -110,7 +111,7 @@ main {
     background-color: black;
     font-family: "Orbitron";
     position: relative;
-    bottom: 8.5vw;
+    bottom: 12.5vw;
 }
 
 #player2name {
@@ -122,7 +123,7 @@ main {
     font-size: 2.5em;
 }
 #gplayed2 {
-    height: 4vw;
+    height: 2vw;
     font-size: 2.5em;
 }
 #attempts2 {
@@ -162,7 +163,7 @@ main {
     display: inline-block;
     vertical-align: top;
     top: 4vw;
-    left: 2vw;
+    left: 11vw;
 }
 .row0, .row1, .row2, .row3, .row4, .row5, .row6 {
     display: inline-block;
@@ -218,7 +219,10 @@ main {
     background: url("DPgamepiecesmall.png");
     background-size: 100% 100%;
 }
-
+.showPlayer3 {
+    background: url("chimichanga.png");
+    background-size: 100% 100%;
+}
 .token1 {
     background: url("SMgamepiecesmall.png");
     position: relative;
@@ -380,29 +384,25 @@ label {
     left: 40vw;
     text-align: center;
 }
-#attempts {
+#wins1, #wins2 {
 
-    height: 80px;
-    position: relative;
-    background-color: black;
-
-
+    height: 1.5vw;
+    font-size: 2.5em;
+    font-family: "Orbitron";
+    margin-top: 10%;
 }
+#gp1Wins, #gp2Wins {
 
-#games-played {
-
-    height: 30vw;
-    position: relative;
-    top: 10%;
-    background-color: lime;
-
-
+    height: 1.5vw;
+    font-size: 2.5em;
+    font-family: "Orbitron";
+    margin-top: 4%;
 }
+#gplayed1value, #gplayed2value {
 
-#accuracy {
-
-    height: 80px;
-    top: 10vw
+    height: 1.5vw;
+    font-size: 2.5em;
+    font-family: "Orbitron";
 
 }
 .statsDisplay {
@@ -414,11 +414,30 @@ label {
 
 }
 #restartGame {
-    background-color: lime;
+    top: 1vw;
+    position: relative;
+    left: 42%;
+    bottom: auto;
     height: 10vw;
 }
 #restartimg {
-    height: 5vw;
+    height: 4vw;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+#restartGameText {
+    height: 2vw;
+    position: relative;
+    bottom: 8vw;
+    left: 39%;
+    align-content: center;
+}
+#restartP {
+    font-size: 1vw;
+    color: white;
+    font-family: "Orbitron";
+    text-shadow: 0 0 3px darkslategrey;
+
 }
 h1{
     margin-top: 4vw;
@@ -449,7 +468,7 @@ span {
 }
 
 /* The Modal (background) */
-#winModal, #bigWinModal {
+#winModal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -495,3 +514,162 @@ span {
     font-size: 24px;
 
 }
+.bonusimgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+span {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+#bonusModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.bonuscontent {
+    background-image: url("chimichanga.jpg");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 2px solid red;
+    border-radius: 8px;
+    width: 50%; /* Could be more or less, depending on screen size */
+    height: 50%;
+    font-family: "Orbitron";
+    color: darkred;
+    font-size: 1.5vw;
+}
+#bonusModTextbox {
+    background-color: whitesmoke;
+    opacity: 0.6;
+    width: 40%;
+    height: auto;
+    position: relative;
+    left: 50%;
+    border-radius: 4px;
+}
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: white;
+    font-size: 24px;
+
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+
+}
+
+
+/* The Modal (background) */
+#bigWinModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.bigwincontent {
+    background-image: url("makeitrain.jpg");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 2px solid red;
+    border-radius: 8px;
+    width: 50%; /* Could be more or less, depending on screen size */
+    height: 50%;
+    font-family: "Orbitron";
+    color: black;
+    font-size: 1.5vw;
+}
+#bigwinModTextbox {
+    background-color: whitesmoke;
+    opacity: 1.6;
+    width: 60%;
+    height: auto;
+    position: relative;
+    left: 23%;
+    border-radius: 4px;
+}
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: white;
+    font-size: 24px;
+
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+}
+.bigwincontent:hover {
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 0.5s;
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
