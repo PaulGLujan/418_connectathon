@@ -74,12 +74,10 @@ function placePlayerToken(piecesInRow, currentPlayer) {
         } else if (currentPlayer === player[1]) {
             gameArray[piecesInRow][column_clicked].token = 2;
         }
-        //changeTurn();
     } else if (currentPlayer.squareBonus === 1){
         gameArray[piecesInRow][column_clicked].token = 3;
         //squareBonus modal HERE~~~~~~~~~~~~~~~~~~
         currentPlayer.squareBonus = 0
-        //changeTurn();
     }
     squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked);
 }
@@ -114,8 +112,10 @@ function displayToken(piecesInRow, column_clicked) {
         var playerNumber = returnPlayerNumber(currentPlayer);
         removeAllSpinClass();
         winCondition(rowToPlacePiece, column_clicked, gameArray, currentPlayer);
-        changeTurn();
-
+        
+        if (currentPlayer.squareBonus === 0){
+            changeTurn();
+        }
 
         console.log('Piece placement function working');
         console.log('This is: ', this);
@@ -152,7 +152,6 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
                 if (gameArray[piecesInRow - 0][column_clicked + 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow - 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
                     currentPlayer.squareBonus += 1;
                     console.log('SQUAREBONUS top right');
-                    //changeTurn();
                     return;
                 };
             };
@@ -164,7 +163,6 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
                 if (gameArray[piecesInRow - 0][column_clicked - 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow - 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
                     currentPlayer.squareBonus += 1;
                     console.log('SQUAREBONUS top left');
-                    //changeTurn();
                     return;
                 };
             };
@@ -176,7 +174,6 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
                 if (gameArray[piecesInRow - 0][column_clicked - 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow + 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
                     currentPlayer.squareBonus += 1;
                     console.log('SQUAREBONUS bottom left');
-                    //changeTurn();
                     return;
                 };
             };
@@ -188,7 +185,6 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
                 if (gameArray[piecesInRow - 0][column_clicked + 1].token === currentPlayer.tokenNumber && gameArray[piecesInRow + 1][column_clicked - 0].token === currentPlayer.tokenNumber) {
                     currentPlayer.squareBonus += 1;
                     console.log('SQUAREBONUS bottom right');
-                    //changeTurn();
                     return;
                 };
             };
@@ -332,6 +328,9 @@ function squareBonusCheck(gameArray, piecesInRow, currentPlayer, column_clicked)
     function resetGame() {
         $(".column").removeClass("showPlayer1");
         $(".column").removeClass("showPlayer2");
+        $(".column").removeClass("showPlayer3");
+        player[0].squareBonus = 0;
+        player[1].squareBonus = 0;
         removeAllSpinClass();
         gameArray.length = 0;
         gameArray = [
