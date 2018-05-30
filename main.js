@@ -14,6 +14,7 @@ function attachClickHandlers(){
     $("#playButton").on("click", getInput);
     $("#playButton").on("click", hideStartMenu);
     $("#playButton").on("click", resetGame);
+    $("#restartGame").on("click", reset_stats);
 
     $('.gameBoard').on('mouseover', '.column0', hoverEffect);
     $('.gameBoard').on('mouseover', '.column1', hoverEffect);
